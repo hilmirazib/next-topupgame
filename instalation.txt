@@ -1,3 +1,4 @@
 1. install next and typescript npx create-next-app@latest --typescript / npx create-next-app@10.2.3 --typescript
 2. install story book : npx sb init
 3. npx eslint --init
+4. yarn add classnames

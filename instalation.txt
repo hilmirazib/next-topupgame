@@ -4,3 +4,4 @@
 4. yarn add aos
 5. yarn add classnames
 6. yarn add axios
+7. yarn add bootstrap

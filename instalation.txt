@@ -6,3 +6,4 @@
 6. yarn add axios
 7. yarn add bootstrap
 8. yarn add react-number-format
+9. yarn add react-toastify

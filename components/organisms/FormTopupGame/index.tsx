@@ -1,7 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-export default function FormTopupGame() {
+import NominalItem from './NominalItem';
+import PaymentItem from './PaymentItem';
+import { NominalsTypes, PaymentTypes } from '../../../serviceAPI/data-type';
+interface FormTopupGameProps {
+  nominals: NominalsTypes;
+  payments: PaymentTypes;
+}
+export default function FormTopupGame(props: FormTopupGameProps) {
+  const { nominals, payments } = props;
+  console.log(payments);
   return (
     <form action="./checkout.html" method="POST">
       <div className="pt-md-50 pt-30">
@@ -22,71 +31,17 @@ export default function FormTopupGame() {
       <div className="pt-md-50 pb-md-50 pt-30 pb-20">
         <p className="text-lg fw-medium color-palette-1 mb-md-10 mb-0">Nominal Top Up</p>
         <div className="row justify-content-between">
-          <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="topup1">
-            <input className="d-none" type="radio" id="topup1" name="topup" value="topup1" />
-            <div className="detail-card">
-              <div className="d-flex justify-content-between">
-                <p className="text-3xl color-palette-1 m-0">
-                  <span className="fw-medium">125</span>
-                  Gold
-                </p>
-                <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-              </div>
-              <p className="text-lg color-palette-1 m-0">Rp 3.250.000</p>
-            </div>
-          </label>
-          <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="topup2">
-            <input className="d-none" type="radio" id="topup2" name="topup" value="topup2" />
-            <div className="detail-card">
-              <div className="d-flex justify-content-between">
-                <p className="text-3xl color-palette-1 m-0">
-                  <span className="fw-medium">225</span>
-                  Gold
-                </p>
-                <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-              </div>
-              <p className="text-lg color-palette-1 m-0">Rp 3.250.000</p>
-            </div>
-          </label>
-          <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="topup3">
-            <input className="d-none" type="radio" id="topup3" name="topup" value="topup3" />
-            <div className="detail-card">
-              <div className="d-flex justify-content-between">
-                <p className="text-3xl color-palette-1 m-0">
-                  <span className="fw-medium">350</span>
-                  Gold
-                </p>
-                <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-              </div>
-              <p className="text-lg color-palette-1 m-0">Rp 3.250.000</p>
-            </div>
-          </label>
-          <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="topup4">
-            <input className="d-none" type="radio" id="topup4" name="topup" value="topup4" />
-            <div className="detail-card">
-              <div className="d-flex justify-content-between">
-                <p className="text-3xl color-palette-1 m-0">
-                  <span className="fw-medium">550</span>
-                  Gold
-                </p>
-                <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-              </div>
-              <p className="text-lg color-palette-1 m-0">Rp 3.250.000</p>
-            </div>
-          </label>
-          <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="topup5">
-            <input className="d-none" type="radio" id="topup5" name="topup" value="topup5" />
-            <div className="detail-card">
-              <div className="d-flex justify-content-between">
-                <p className="text-3xl color-palette-1 m-0">
-                  <span className="fw-medium">750</span>
-                  Gold
-                </p>
-                <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-              </div>
-              <p className="text-lg color-palette-1 m-0">Rp 3.250.000</p>
-            </div>
-          </label>
+          {nominals.map((nominal: any) => {
+            return (
+              <NominalItem
+                key={nominal._id}
+                _id={nominal._id}
+                coinQuantity={nominal.coinQuantity}
+                coinName={nominal.coinName}
+                price={nominal.price}
+              />
+            );
+          })}
           <div className="col-lg-4 col-sm-6"></div>
         </div>
       </div>
@@ -94,26 +49,9 @@ export default function FormTopupGame() {
         <p className="text-lg fw-medium color-palette-1 mb-md-10 mb-0">Payment Method</p>
         <fieldset id="paymentMethod">
           <div className="row justify-content-between">
-            <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="transfer">
-              <input className="d-none" type="radio" id="transfer" name="paymentMethod" value="transfer" />
-              <div className="detail-card">
-                <div className="d-flex justify-content-between">
-                  <p className="text-3xl color-palette-1 fw-medium m-0">Transfer</p>
-                  <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-                </div>
-                <p className="text-lg color-palette-1 m-0">Worldwide Available</p>
-              </div>
-            </label>
-            <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor="visa">
-              <input className="d-none" type="radio" id="visa" name="paymentMethod" value="visa" />
-              <div className="detail-card">
-                <div className="d-flex justify-content-between">
-                  <p className="text-3xl color-palette-1 fw-medium m-0">VISA</p>
-                  <Image src="/icon/check.svg" width={20} height={20} id="icon-check" />
-                </div>
-                <p className="text-lg color-palette-1 m-0">Credit Card</p>
-              </div>
-            </label>
+            {payments.map((payment: any) =>
+              payment.banks.map((bank: any) => <PaymentItem bankID={bank._id} type={payment.type} name={bank.bankName} />)
+            )}
             <div className="col-lg-4 col-sm-6"></div>
           </div>
         </fieldset>

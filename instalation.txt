@@ -7,3 +7,5 @@
 7. yarn add bootstrap
 8. yarn add react-number-format
 9. yarn add react-toastify
+10.yarn add js-cookie
+11. yarn add jwt-decode

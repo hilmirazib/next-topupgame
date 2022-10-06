@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { setSignIn } from '../../../serviceAPI/auth';
+import Cookies from 'js-cookie';
 export default function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +26,8 @@ export default function SignInForm() {
       } else {
         toast.success('Login Berhasil');
         const { token } = response.data;
+        const tokenBase64 = btoa(token);
+        Cookies.set('token', tokenBase64, { expires: 1 });
         router.push('/');
       }
     }

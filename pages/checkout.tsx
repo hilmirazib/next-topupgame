@@ -2,7 +2,13 @@ import Image from 'next/image';
 import CheckoutItem from '../components/organisms/CheckoutItem';
 import CheckoutDetail from '../components/organisms/CheckoutDetail';
 import CheckoutConfirmation from '../components/organisms/CheckoutConfirmation';
-export default function Checkout() {
+import { JWTPayloadTypes, UserTypes } from '../serviceAPI/data-type';
+import jwtDecode from 'jwt-decode';
+interface CheckoutProps {
+  user: UserTypes;
+}
+export default function Checkout(props: CheckoutProps) {
+  const { user } = props;
   return (
     <section className="checkout mx-auto pt-md-100 pb-md-145 pt-30 pb-30">
       <div className="container-fluid">
@@ -22,4 +28,33 @@ export default function Checkout() {
       </div>
     </section>
   );
+}
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
+}
+
+export async function getServerSideProps({ req }: GetServerSideProps) {
+  const { token } = req.cookies;
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+  const jwtToken = Buffer.from(token, 'base64').toString('ascii'); //sama seperti fungsi atob di client side
+  const payload: JWTPayloadTypes = jwtDecode(jwtToken);
+  const userPayload: UserTypes = payload.player;
+  const IMG = process.env.NEXT_PUBLIC_IMG;
+  userPayload.avatar = `${IMG}/${userPayload.avatar}`;
+  return {
+    props: {
+      user: userPayload,
+    },
+  };
 }

@@ -18,6 +18,7 @@ export default function Detail() {
   const [payments, setPayments] = useState([]);
   const getDetailVoucherApi = useCallback(async (id: any) => {
     const data = await getDetailVoucher(id);
+    localStorage.setItem('data-item', JSON.stringify(data.detail));
     setDataItem(data.detail);
     setNominals(data.detail.nominals);
     setPayments(data.payments);
@@ -29,6 +30,7 @@ export default function Detail() {
       console.log('router tidak tersedia');
     }
   }, [isReady]);
+
   return (
     <>
       <Navbar />

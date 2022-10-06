@@ -20,7 +20,12 @@ export default function CompleteCheckout() {
               My Dashboard
             </a>
           </Link>
-          <a className="btn btn-whatsapp fw-medium text-lg color-palette-1 rounded-pill" href="#" role="button">
+          <a
+            className="btn btn-whatsapp fw-medium text-lg color-palette-1 rounded-pill"
+            href="https://wa.me/628978663783?text=I'm%20interested%20in%20your%20car%20for%20sale"
+            role="button"
+            target="_blank"
+          >
             WhatsApp ke Admin
           </a>
         </div>

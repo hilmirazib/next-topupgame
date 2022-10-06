@@ -2,12 +2,13 @@ interface PaymentItemProps {
   bankID: string;
   type: string;
   name: string;
+  onChange: () => void;
 }
 
 export default function PaymentItem(props: PaymentItemProps) {
-  const { bankID, type, name } = props;
+  const { bankID, type, name, onChange } = props;
   return (
-    <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor={bankID}>
+    <label className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10" htmlFor={bankID} onChange={onChange}>
       <input className="d-none" type="radio" id={bankID} name="paymentMethod" value={bankID} />
       <div className="detail-card">
         <div className="d-flex justify-content-between">

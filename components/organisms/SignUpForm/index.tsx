@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 export default function SignUpForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -16,9 +17,12 @@ export default function SignUpForm() {
       name,
       password,
     };
-
-    localStorage.setItem('user-form', JSON.stringify(userForm));
-    router.push('/sign-up-photo');
+    if (!email || !name || !password) {
+      toast.error('Email, Name dan Password wajib diisi!!!');
+    } else {
+      localStorage.setItem('user-form', JSON.stringify(userForm));
+      router.push('/sign-up-photo');
+    }
   };
   return (
     <>

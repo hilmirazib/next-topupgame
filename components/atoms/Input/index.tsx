@@ -5,6 +5,8 @@
 // }
 export interface InputProps {
   label: string;
+  disabled?: boolean;
+  value?: string;
 }
 export default function Input(props: InputProps) {
   const { label, ...nativeProps } = props;

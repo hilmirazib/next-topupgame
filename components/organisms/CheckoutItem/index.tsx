@@ -10,6 +10,7 @@ export default function CheckoutItem() {
   });
   useEffect(() => {
     const dataFromLocal = localStorage.getItem('data-item');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const dataItemLocal = JSON.parse(dataFromLocal!);
     setDataItem(dataItemLocal);
   }, []);

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import Navbar from '../components/organisms/Navbar';

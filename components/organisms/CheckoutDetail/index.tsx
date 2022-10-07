@@ -26,6 +26,7 @@ export default function CheckoutDetail() {
   });
   useEffect(() => {
     const dataFromLocal = localStorage.getItem('data-topup');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const dataTopUpLocal = JSON.parse(dataFromLocal!);
     setDataTopUp(dataTopUpLocal);
   }, []);

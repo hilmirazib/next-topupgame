@@ -64,11 +64,13 @@ export default function EditProfile() {
             <form action="">
               <div className="photo d-flex">
                 <div className="position-relative me-20">
-                  {imagePreview == '/' ? (
+                  {imagePreview === '/'
+                    ? (
                     <img src={`${IMG}/${user.avatar}`} width="90" height="90" className="avatar img-fluid" />
-                  ) : (
+                      )
+                    : (
                     <img src={imagePreview} alt="icon upload" width={90} height={90} style={{ borderRadius: '100%' }} />
-                  )}
+                      )}
                   <div className="avatar-overlay position-absolute top-0 d-flex justify-content-center align-items-center">
                     <Image src="/icon/trash.svg" height={24} width={24} alt="Upload" />
                   </div>

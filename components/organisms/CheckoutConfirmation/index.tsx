@@ -1,4 +1,4 @@
-import Link from 'next/link';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -16,7 +16,6 @@ export default function CheckoutConfirmation() {
 
     if (!checkbox) {
       toast.error('Pastikan anda telah melakukan pembayaran');
-      // [CODE UPDATE] menggagalkan checkout jika checkbox false
       return;
     }
 

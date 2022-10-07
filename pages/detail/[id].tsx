@@ -5,11 +5,10 @@ import Footer from '../../components/organisms/Footer';
 import { getDetailVoucher, getFeaturedGame } from '../../serviceAPI/player';
 import { GameItemTypes, NominalsTypes, PaymentTypes } from '../../serviceAPI/data-type';
 import { useEffect } from 'react';
-import { json } from 'stream/consumers';
 interface DetailProps {
   dataItem: GameItemTypes;
-  nominals: NominalsTypes[];
-  payments: PaymentTypes[];
+  nominals: NominalsTypes;
+  payments: PaymentTypes;
 }
 export default function Detail({ dataItem, nominals, payments }: DetailProps) {
   useEffect(() => {

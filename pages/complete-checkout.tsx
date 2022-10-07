@@ -25,6 +25,7 @@ export default function CompleteCheckout() {
             href="https://wa.me/628978663783?text=I'm%20interested%20in%20your%20car%20for%20sale"
             role="button"
             target="_blank"
+            rel="noreferrer"
           >
             WhatsApp ke Admin
           </a>

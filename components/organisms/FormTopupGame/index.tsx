@@ -29,7 +29,7 @@ export default function FormTopupGame(props: FormTopupGameProps) {
     setPaymentItem(data);
   };
   const onSubmit = () => {
-    if (verifyID === '' || bankAccountName === '' || nominalItem === {} || paymentItem === {}) {
+    if (verifyID === '' || bankAccountName === '' || Object.keys(nominalItem).length === 0 || Object.keys(paymentItem).length === 0) {
       toast.error('silahkan isi semua data!!!');
     } else {
       const data = {

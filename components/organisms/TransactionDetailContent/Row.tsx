@@ -11,11 +11,13 @@ export default function Row(props: Partial<RowProps>) {
     <p className="text-lg color-palette-1 mb-20">
       {label}
       <span className={`purchase-details ${ClassName}`}>
-        {typeof value === 'number' ? (
+        {typeof value === 'number'
+          ? (
           <NumericFormat value={value} prefix="Rp. " displayType="text" thousandSeparator="." decimalSeparator="," />
-        ) : (
-          value
-        )}
+            )
+          : (
+              value
+            )}
       </span>
     </p>
   );

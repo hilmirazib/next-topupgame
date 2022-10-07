@@ -14,7 +14,7 @@ export default function MenuItem(props: Partial<MenuItemProps>) {
   const classActive = cn({
     item: true,
     'mb-30': true,
-    active: active,
+    active,
   });
   return (
     <div className={classActive} onClick={onClick}>
@@ -25,13 +25,15 @@ export default function MenuItem(props: Partial<MenuItemProps>) {
         {/* <Link href={`${href}`}>
           <a className="text-lg text-decoration-none">{title}</a>
         </Link> */}
-        {onClick ? (
+        {onClick
+          ? (
           <a className="text-lg text-decoration-none">{title}</a>
-        ) : (
+            )
+          : (
           <Link href={`${href}`}>
             <a className="text-lg text-decoration-none">{title}</a>
           </Link>
-        )}
+            )}
       </p>
     </div>
   );

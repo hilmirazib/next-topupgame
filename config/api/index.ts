@@ -13,7 +13,6 @@ export default async function callAPI({ url, method, data, token }: callAPIProps
       Authorization: `Bearer ${token}`,
     };
     const tokenCookies = Cookies.get('token');
-    console.log(tokenCookies);
     if (tokenCookies) {
       const jwtToken = atob(tokenCookies);
       headers = {
@@ -36,10 +35,18 @@ export default async function callAPI({ url, method, data, token }: callAPIProps
     };
     return res;
   }
+  // const res = {
+  //   error: false,
+  //   message: 'success login',
+  //   data: response.data.count ? response.data : response.data.data,
+  // };
+  // return res;
+  const { length } = Object.keys(response.data);
   const res = {
     error: false,
-    message: 'success login',
-    data: response.data.data,
+    message: 'success',
+    data: length > 1 ? response.data : response.data.data,
   };
+
   return res;
 }

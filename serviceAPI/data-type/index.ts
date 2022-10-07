@@ -89,7 +89,8 @@ export interface HistoryTransactionTypes {
 }
 
 export interface TopUpCategoriesTypes {
+  map(arg0: (item: any) => any): import('react').ReactNode;
   _id: string;
-  value: number;
+  valeu: number;
   name: string;
 }

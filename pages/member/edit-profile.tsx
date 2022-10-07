@@ -14,6 +14,7 @@ interface UserStateTypes {
   name: string;
   email: string;
   avatar: any;
+  phoneNumber: string;
 }
 
 export default function EditProfile() {
@@ -22,6 +23,7 @@ export default function EditProfile() {
     name: '',
     email: '',
     avatar: '',
+    phoneNumber: '',
   });
   const [imagePreview, setImagePreview] = useState('/');
   const router = useRouter();
@@ -41,6 +43,7 @@ export default function EditProfile() {
 
     data.append('image', user.avatar);
     data.append('name', user.name);
+    data.append('phoneNumber', user.phoneNumber);
     const response = await updateProfile(data);
     if (response.error) {
       toast.error(response.message);
@@ -105,9 +108,18 @@ export default function EditProfile() {
               <div className="pt-30">
                 <Input label="Email Address" disabled value={user.email} />
               </div>
-              {/* <div className="pt-30">
-                <Input label="Phone" />
-              </div> */}
+              <div className="pt-30">
+                <Input
+                  label="Phone"
+                  value={user.phoneNumber}
+                  onChange={(event: { target: { value: any } }) =>
+                    setUser({
+                      ...user,
+                      phoneNumber: event.target.value,
+                    })
+                  }
+                />
+              </div>
               <div className="button-group d-flex flex-column pt-50">
                 <button type="button" className="btn btn-save fw-medium text-lg text-white rounded-pill" onClick={onSubmit}>
                   Save My Profile

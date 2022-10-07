@@ -1,17 +1,18 @@
 import cn from 'classnames';
 interface ButtonTabProps {
-  active?: boolean;
   title: string;
+  active: boolean;
+  onClick: () => void;
 }
 export default function ButtonTab(props: Partial<ButtonTabProps>) {
-  const { active, title } = props;
+  const { active, title, onClick } = props;
   const buttonClass = cn({
     'btn btn-status rounded-pill text-sm me-3': true,
     'btn-active': active,
   });
   return (
-    <a data-filter="*" href="/#" className={buttonClass}>
+    <button type="button" onClick={onClick} className={buttonClass}>
       {title}
-    </a>
+    </button>
   );
 }

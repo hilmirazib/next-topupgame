@@ -1,15 +1,19 @@
 import Link from 'next/link';
 import cn from 'classnames';
+import { NumericFormat } from 'react-number-format';
 interface TableRowProps {
   image: string;
   title: string;
   category: string;
-  item: number;
+  item: string;
   price: number;
-  status: 'pending' | 'success' | 'failed';
+  id: string;
+  // status: 'pending' | 'success' | 'failed';
+  status: string;
 }
+
 export default function TableRow(props: TableRowProps) {
-  const { image, title, category, item, price, status } = props;
+  const { image, title, category, item, price, status, id } = props;
   const statusClass = cn({
     'float-start': true,
     'icon-status': true,
@@ -20,7 +24,7 @@ export default function TableRow(props: TableRowProps) {
   return (
     <tr data-category="pending" className="align-middle">
       <th scope="row">
-        <img className="float-start me-3 mb-lg-0 mb-3" src={`/img/${image}.png`} width="80" height="60" alt="" />
+        <img className="float-start me-3 mb-lg-0 mb-3" src={image} width="80" height="60" alt="" />
         <div className="game-title-header">
           <p className="game-title fw-medium text-start color-palette-1 m-0">{title}</p>
           <p className="text-xs fw-normal text-start color-palette-2 m-0">{category}</p>
@@ -30,7 +34,9 @@ export default function TableRow(props: TableRowProps) {
         <p className="fw-medium color-palette-1 m-0">{item} Gold</p>
       </td>
       <td>
-        <p className="fw-medium color-palette-1 m-0">{price}</p>
+        <p className="fw-medium color-palette-1 m-0">
+          <NumericFormat value={price} prefix="Rp. " displayType="text" thousandSeparator="." decimalSeparator="," />
+        </p>
       </td>
       <td>
         <div>
@@ -39,7 +45,7 @@ export default function TableRow(props: TableRowProps) {
         </div>
       </td>
       <td>
-        <Link href="/member/transactions/detail">
+        <Link href={`/member/transactions/${id}`}>
           <a className="btn btn-status rounded-pill text-sm">Details</a>
         </Link>
       </td>

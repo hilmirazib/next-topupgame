@@ -15,7 +15,6 @@ export default function OverviewContent() {
     } else {
       setCount(response.data.count);
       setData(response.data.data);
-      console.log(data);
     }
   }, []);
 

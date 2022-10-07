@@ -6,12 +6,13 @@ interface callAPIProps extends AxiosRequestConfig {
   token?: boolean;
   serverToken?: string;
 }
-export default async function callAPI({ url, method, data, token }: callAPIProps) {
+export default async function callAPI({ url, method, data, token, serverToken }: callAPIProps) {
   let headers = {};
-  if (token) {
+  if (serverToken) {
     headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${serverToken}`,
     };
+  } else if (token) {
     const tokenCookies = Cookies.get('token');
     if (tokenCookies) {
       const jwtToken = atob(tokenCookies);

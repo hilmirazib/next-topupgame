@@ -29,9 +29,7 @@ export default function FormTopupGame(props: FormTopupGameProps) {
     setPaymentItem(data);
   };
   const onSubmit = () => {
-    if (verifyID === '' || bankAccountName === '' || Object.keys(nominalItem).length === 0 || Object.keys(paymentItem).length === 0) {
-      toast.error('silahkan isi semua data!!!');
-    } else {
+    if (verifyID !== '' || bankAccountName !== '' || nominalItem || paymentItem) {
       const data = {
         verifyID,
         bankAccountName,
@@ -40,6 +38,8 @@ export default function FormTopupGame(props: FormTopupGameProps) {
       };
       localStorage.setItem('data-topup', JSON.stringify(data));
       router.push('/checkout');
+    } else {
+      toast.error('silahkan isi semua data!!!');
     }
   };
   return (

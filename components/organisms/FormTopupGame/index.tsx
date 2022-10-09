@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { toast } from 'react-toastify';
 import NominalItem from './NominalItem';
 import PaymentItem from './PaymentItem';
@@ -28,8 +26,13 @@ export default function FormTopupGame(props: FormTopupGameProps) {
     };
     setPaymentItem(data);
   };
+  const isEmpty = (obj: Record<string, any>): boolean => {
+    return Object.keys(obj).length === 0;
+  }
   const onSubmit = () => {
-    if (verifyID !== '' || bankAccountName !== '' || nominalItem || paymentItem) {
+    if (verifyID === '' || bankAccountName === '' || isEmpty(nominalItem) || isEmpty(paymentItem)) {
+      toast.error('silahkan isi semua data!!!');
+    } else {
       const data = {
         verifyID,
         bankAccountName,
@@ -38,8 +41,6 @@ export default function FormTopupGame(props: FormTopupGameProps) {
       };
       localStorage.setItem('data-topup', JSON.stringify(data));
       router.push('/checkout');
-    } else {
-      toast.error('silahkan isi semua data!!!');
     }
   };
   return (
